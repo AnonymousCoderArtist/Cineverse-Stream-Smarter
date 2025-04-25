@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CINEVERSE</title>
+    <!-- Using a generic favicon, replace if needed -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js" integrity="sha512-f6bQMg6nkSRw/xfHw5BCbISe/dJjXrVGfz9BSDwhZtiErHwk7ifbmBEtF9vFW8UNIQPhV2uEFVyI/UHob9r7Cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/CustomEase.min.js" integrity="sha512-yKB//esSzR36AMUGcX9f7t7l/0A7t3YU5SGFb7V/6NJ0H7Nd8mSMdAZYXAGm7swXWOZcnR2mNHzYMHqpWpZ+OQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <!-- Removed SplitType script as it wasn't used in the final JS -->
+    <script src="https://unpkg.com/split-type@0.3.4/index.min.js"></script>
+    <!-- Font Awesome for new carousel arrows -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="menu.css"> <!-- Make sure menu.css exists -->
+</head>
+<body>
+
+    <!-- ======================== -->
+    <!-- === SIGN UP SECTION === -->
+    <!-- ======================== -->
+    <div id="signup-section">
+        <header class="signup-header">
+            <div class="signup-logo">
+                <span>C</span>
+            </div>
+            <h1>Create Your Account & Sign-In</h1>
+        </header>
+        <form action="#" id="signup-form">
+            <input
+                type="text"
+                name="username"
+                placeholder="Choose a username"
+                required
+            >
+            <input
+                type="email"
+                name="email"
+                placeholder="Your email"
+                required
+            >
+            <input
+                type="password"
+                name="password"
+                id="signup_password"
+                placeholder="Enter your password"
+                minlength="6"
+                required
+            >
+            <p>Password must be at least 6 characters</p>
+            <input
+                type="password"
+                name="confirm_password"
+                id="signup_confirm_password"
+                placeholder="Confirm your password"
+                required
+            >
+            <p id="signup-confirm-pass-msg"></p>
+            <button type="submit" id="signup-submit-button" disabled>Welcome</button>
+            <p>
+                By signing up, you acknowledge you have read and agree to our <a href="#">Terms of Service</a> and our <a href="#">Privacy Policy</a>.
+            </p>
+        </form>
+    </div>
+    <!-- ======================== -->
+    <!-- == END SIGN UP SECTION == -->
+    <!-- ======================== -->
+
+
+    <!-- ======================== -->
+    <!-- == MAIN WEBSITE CONTENT == -->
+    <!-- ======================== -->
+    <div id="main-website-content" style="display: none;"> <!-- Initially hidden -->
+
+        <!-- Overlay (Starts Visible, Animated Out) -->
+        <div class="overlay">
+            <div class="projects">
+                <!-- Dynamic Content -->
+            </div>
+            <div class="loader">
+                <h1 class="logo-line-1">CINE</h1>
+                <h1 class="logo-line-2">VERSE</h1>
+            </div>
+            <div class="locations">
+                 <!-- Dynamic Content -->
+            </div>
+        </div>
+
+        <!-- Image Grid (Starts Visible, Images Animated In/Out) -->
+        <div class="image-grid">
+            <div class="grid-row">
+                <div class="img"><img src="./img2.png" alt="Grid Image 2" loading="lazy"></div>
+                <div class="img"><img src="./img3.png" alt="Grid Image 3" loading="lazy"></div>
+                <div class="img"><img src="./img1.png" alt="Grid Image 1" loading="lazy"></div>
+            </div>
+            <div class="grid-row">
+                <div class="img"><img src="./img4.png" alt="Grid Image 4" loading="lazy"></div>
+                <!-- Hero image initially here, image tag moved by JS -->
+                <div class="img hero-img"><img src="./img5.png" alt="Hero Image Placeholder" loading="lazy"></div>
+                <div class="img"><img src="./img6.png" alt="Grid Image 6" loading="lazy"></div>
+            </div>
+            <div class="grid-row">
+                <div class="img"><img src="./img7.png" alt="Grid Image 7" loading="lazy"></div>
+                <div class="img"><img src="./img8.png" alt="Grid Image 8" loading="lazy"></div>
+                <div class="img"><img src="./img9.png" alt="Grid Image 9" loading="lazy"></div>
+            </div>
+        </div>
+
+        <!-- Navigation (Starts Hidden, Animated In) -->
+        <nav>
+            <div class="logo"><a href="#">CINEVERSE</a></div>
+            <div class="menu-toggle closed">
+                <div class="menu-toggle-icon">
+                    <div class="hamburger">
+                        <div class="menu-bar" data-position="top"></div>
+                        <div class="menu-bar" data-position="bottom"></div>
+                    </div>
+                </div>
+                <div class="menu-copy">
+                    <p>Menu</p>
+                </div>
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search...">
+                <div class="search-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="2"/>
+                        <path d="M15 15L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="col col-1">
+                    <div class="menu-logo"><a href="#">CINEVERSE</a></div>
+                    <div class="links">
+                        <div class="link"><a href="#home">Home</a></div>
+                        <div class="link"><a href="#genre">Genre</a></div>
+                        <div class="link"><a href="#trending">Trending</a></div>
+                        <div class="link"><a href="#contact">Contact</a></div>
+                    </div>
+                    <div class="genre-filter-mobile">
+                        <h3>Filter by Genre</h3>
+                        <div class="filter-buttons">
+                            <!-- Buttons added by JS -->
+                        </div>
+                    </div>
+                    <div class="video-wrapper">
+                        <video autoplay muted loop playsinline>
+                            <source src="./bgmovie.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+                <div class="col col-2">
+                    <div class="socials">
+                        <div class="sub-col">
+                            <p>CINEVERSE</p>
+                            <p>123 Movie Lane, Hollywood, CA 90210</p>
+                            <p>Earth</p>
+                            <br/>
+                            <p>contact@cineverse.fr</p>
+                            <p>job@cv.fr</p>
+                        </div>
+                        <div class="sub-col">
+                            <p>Instagram</p>
+                            <p>Facebook</p>
+                            <p>LinkedIn</p>
+                            <p>Telegram</p>
+                            <br/>
+                            <p>01 06 54 684 456 12</p>
+                        </div>
+                    </div>
+                    <div class="header">
+                        <h1>CineVerse</h1> <!-- Text splitting happens via JS -->
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main/Hero Section (Starts Hidden, Animated In) -->
+        <section class="main" id="home">
+            <div class="hero-image-container">
+                 <!-- Image tag moved here dynamically by JS -->
+            </div>
+            <div class="slider-bar">
+                <div class="bar1"></div>
+                <div class="bar2 selected"></div>
+                <div class="bar3"></div>
+            </div>
+            <div class="movie-name">INTERSTELLAR</div>
+            <div class="movie-tag">SCI-FI</div>
+            <div class="shadow"></div>
+            <div class="ground">
+                <img src="./moon surface.png" alt="Moon Surface Ground" loading="lazy">
+            </div>
+            <svg style="position: absolute; width: 0; height: 0;">
+                <defs>
+                    <clipPath id="customClip" clipPathUnits="objectBoundingBox">
+                        <path d="M0 0.0277C0 0.0114 0.006 0 0.013 0.0003C0.073 0.014 0.329 0.07 0.5 0.07C0.672 0.07 0.926 0.014 0.986 0.0003C0.993 0 1 0.0114 1 0.0277V0.97C1 0.986 0.994 1 0.987 0.999C0.92 0.987 0.604 0.936 0.5 0.932C0.396 0.929 0.08 0.986 0.013 0.998C0.006 0.999 0 0.986 0 0.97V0.0277Z"/>
+                    </clipPath>
+                </defs>
+            </svg>
+        </section>
+
+        <!-- Genre/Steps Section -->
+        <section class="steps" id="genre">
+            <div class="step-counter">
+                <div class="counter-title"><h1>GENRE</h1></div>
+                <div class="count">
+                    <div class="count-container">
+                        <h1>Action</h1>
+                        <h1>Sci-fi</h1>
+                        <h1>Fantasy</h1>
+                        <h1>Animation</h1>
+                        <h1>Thriller</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="cards">
+                 <div class="card">
+                    <div class="card-img">
+                        <img class="bg-image" src="./img8.png" alt="Spiderman No Way Home" loading="lazy">
+                        <img class="front-image" src="./spiderman-front.png" alt="Spiderman Front" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <p>Explosions, chases, and epic fights. Pure adrenaline!</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img class="bg-image" src="./int.png" alt="Interstellar" loading="lazy">
+                        <img class="front-image" src="./intesteller-front.png" alt="Interstellar Front" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <p>Explore the future, space, and cool technology. Big ideas!</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img class="bg-image" src="./img1.png" alt="Aladdin" loading="lazy">
+                        <img class="front-image" src="./alladin-front.png" alt="Aladdin Front" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <p>Magic, myths, and impossible worlds. Epic adventures!</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img class="bg-image" src="./transformers.png" alt="Transformers One" loading="lazy">
+                        <img class="front-image" src="./transformers-front.png" alt="Transformers Front" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <p>Stories brought to life with amazing art. Anything goes!</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img class="bg-image" src="./img2.png" alt="Iron Man" loading="lazy">
+                        <img class="front-image" src="./ironman-front.png" alt="Iron Man Front" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <p>Edge-of-your-seat suspense and mind-twisting mysteries.</p>
+                    </div>
+                </div>
+                <div class="card empty"></div>
+                <div class="card empty"></div>
+            </div>
+        </section>
+
+        <!-- Outro Section (Starts Hidden, Animated In) -->
+        <section class="outro">
+            <p>
+                Cineverse: Where Stories Unfold ! Stream Blockbusters, Binge Hidden Gems,
+                <span>Dive Into Endless Cinema </span>
+                , Magic—Any Screen, Any Time, Watch What Moves You. Anytime, Anywhere.
+            </p>
+        </section>
+
+        <!-- Trending Section (Starts Hidden, Animated In) -->
+        <section id="trending" class="3d trending">
+            <div id="entry-overlay">
+                <div id="split-left" class="split-panel"></div>
+                <div id="split-right" class="split-panel"></div>
+                <div id="entry-prompt">
+                    <h2 class="trendingtitle">Trending Movies</h2>
+                    <p>Click to Enter</p>
+                </div>
+            </div>
+            <div class="container">
+                <div class="slider">
+                    <!-- Slides generated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Movies Section (Starts Hidden, Animated In) -->
+        <div class="carousel-outer-container">
+            <div class="carousel-container" id="top-movies">
+                <div class="title"><h3>Top Movies</h3></div>
+                <div class="prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>
+                <div class="carousel-list">
+                    <ul class="slider-content">
+                        <li data-title="Stree 2" data-description="After the events of Stree..." data-tag="Horror"><div class="carousel-item-content"><img src="s1.png" loading="lazy" alt="Stree 2"/><div class="movie-info-hover"><h4 class="info-title"></h4><p class="info-description"></p><span class="info-tag"></span></div></div></li>
+                        <li data-title="Spider-Man: No way Home" data-description="From Marvel Studios..." data-tag="Oscar Nominee"><div class="carousel-item-content"><img src="spiderman_bg.png" loading="lazy" alt="Spider-Man"/><div class="movie-info-hover"><h4 class="info-title"></h4><p class="info-description"></p><span class="info-tag"></span></div></div></li>
+                        <li data-title="The Batman" data-description="Batman, a masked vigilante..." data-tag="Oscar Winner"><div class="carousel-item-content"><img src="batman.png" loading="lazy" alt="The Batman"/><div class="movie-info-hover"><h4 class="info-title"></h4><p class="info-description"></p><span class="info-tag"></span></div></div></li>
+                        <li data-title="Sky Force" data-description="In the 1965 Indo-Pak War..." data-tag="Drama"><div class="carousel-item-content"><img src="s2.png" loading="lazy" alt="Sky Force"/><div class="movie-info-hover"><h4 class="info-title"></h4><p class="info-description"></p><span class="info-tag"></span></div></div></li>
+                        <li data-title="Kalki 2898 AD" data-description="Centuries into the future..." data-tag="Adventure"><div class="carousel-item-content"><img src="s3.png" loading="lazy" alt="Kalki 2898 AD"/><div class="movie-info-hover"><h4 class="info-title"></h4><p class="info-description"></p><span class="info-tag"></span></div></div></li>
+                        <li data-title="Game Changer" data-description="Chief Minister Sathyamoorthy..." data-tag="Action"><div class="carousel-item-content"><img src="s4.png" loading="lazy" alt="Game Changer"/><div class="movie-info-hover"><h4 class="info-title"></h4><p class="info-description"></p><span class="info-tag"></span></div></div></li>
+                        <li data-title="Oppenheimer" data-description="Experience the breathtaking..." data-tag="Oscar 7x Winner"><div class="carousel-item-content"><img src="s5.png" loading="lazy" alt="Oppenheimer"/><div class="movie-info-hover"><h4 class="info-title"></h4><p class="info-description"></p><span class="info-tag"></span></div></div></li>
+                        <li data-title="RRR" data-description="Two opposite forces fight..." data-tag="Action"><div class="carousel-item-content"><img src="s6.png" loading="lazy" alt="RRR"/><div class="movie-info-hover"><h4 class="info-title"></h4><p class="info-description"></p><span class="info-tag"></span></div></div></li>
+                        <li data-title="WAR" data-description="An elite shadow unit..." data-tag="Suspense"><div class="carousel-item-content"><img src="s7.png" loading="lazy" alt="WAR"/><div class="movie-info-hover"><h4 class="info-title"></h4><p class="info-description"></p><span class="info-tag"></span></div></div></li>
+                        <li data-title="Squid Game" data-description="The contestants face each other..." data-tag="Thriller"><div class="carousel-item-content"><img src="s8.png" loading="lazy" alt="Squid Game"/><div class="movie-info-hover"><h4 class="info-title"></h4><p class="info-description"></p><span class="info-tag"></span></div></div></li>
+                        <li data-title="Interstellar" data-description="A team of explorers travel..." data-tag="Oscar Winner"><div class="carousel-item-content"><img src="img5.png" loading="lazy" alt="Interstellar"/><div class="movie-info-hover"><h4 class="info-title"></h4><p class="info-description"></p><span class="info-tag"></span></div></div></li>
+                    </ul>
+                </div>
+                <div class="next"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+            </div>
+        </div>
+
+        <!-- Watch in Language Section (Starts Hidden, Animated In) -->
+        <div class="carousel-outer-container">
+            <div class="carousel-container" id="language-carousel">
+                <div class="title"><h3>Watch In Your Language</h3></div>
+                <div class="prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>
+                <div class="carousel-list">
+                    <ul class="slider-content">
+                        <li data-title="Watch in Hindi"><div class="carousel-item-content"><img src="hindi.png" loading="lazy" alt="Hindi"/><div class="movie-info-hover"><h4 class="info-title"></h4></div></div></li>
+                        <li data-title="Watch in Telugu"><div class="carousel-item-content"><img src="telugu.png" loading="lazy" alt="Telugu"/><div class="movie-info-hover"><h4 class="info-title"></h4></div></div></li>
+                        <li data-title="Watch in Tamil"><div class="carousel-item-content"><img src="tamil.png" loading="lazy" alt="Tamil"/><div class="movie-info-hover"><h4 class="info-title"></h4></div></div></li>
+                        <li data-title="Watch in English"><div class="carousel-item-content"><img src="english.png" loading="lazy" alt="English"/><div class="movie-info-hover"><h4 class="info-title"></h4></div></div></li>
+                        <li data-title="Watch in Marathi"><div class="carousel-item-content"><img src="marathi.png" loading="lazy" alt="Marathi"/><div class="movie-info-hover"><h4 class="info-title"></h4></div></div></li>
+                        <li data-title="Watch in Bengali"><div class="carousel-item-content"><img src="bengali.png" loading="lazy" alt="Bengali"/><div class="movie-info-hover"><h4 class="info-title"></h4></div></div></li>
+                        <li data-title="Watch in Punjabi"><div class="carousel-item-content"><img src="punjabi.png" loading="lazy" alt="Punjabi"/><div class="movie-info-hover"><h4 class="info-title"></h4></div></div></li>
+                        <li data-title="Watch in Gujarati"><div class="carousel-item-content"><img src="gujarati.png" loading="lazy" alt="Gujarati"/><div class="movie-info-hover"><h4 class="info-title"></h4></div></div></li>
+                        <li data-title="Watch in Kannada"><div class="carousel-item-content"><img src="kannada.png" loading="lazy" alt="Kannada"/><div class="movie-info-hover"><h4 class="info-title"></h4></div></div></li>
+                        <li data-title="Watch in International Languages"><div class="carousel-item-content"><img src="international.png" loading="lazy" alt="International"/><div class="movie-info-hover"><h4 class="info-title"></h4></div></div></li>
+                    </ul>
+                </div>
+                <div class="next"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+            </div>
+        </div>
+
+        <!-- Contact Section (Starts Hidden, Animated In) -->
+        <div class="contact-container" id="contact">
+            <div class="marquee">
+                <span> contact us / contact us / contact us / contact us / contact us / contact us / contact us / contact us / contact us / contact us / contact us / contact us / </span>
+            </div>
+            <div class="contact-section">
+                <div class="contact-details colc">
+                    <p>Let's unlock together the next <br/> level of possibilities <br/> Reach out.</p>
+                    <div class="social-media item">
+                        <h3>Social Media</h3>
+                        <span>TWITTER - INSTAGRAM - GITHUB - TWITCH</span>
+                    </div>
+                    <div class="contact-info">
+                        <div class="email item">
+                            <h3>Get in touch</h3>
+                            <span>HELLO@BASEMENT.STUDIO</span>
+                        </div>
+                        <div class="address item">
+                            <h3>location</h3>
+                            <span>MAR DEL PLATA - ARGENTINA</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form colc">
+                    <div class="wrapper">
+                        <div class="row">
+                            <input type="text" placeholder="Name" />
+                            <input type="text" placeholder="Budget" />
+                        </div>
+                        <div class="row">
+                            <input type="text" placeholder="Email" />
+                            <input type="text" placeholder="Company" />
+                        </div>
+                        <div class="row text-area-row">
+                            <textarea name="message" id="message" placeholder="Message" rows="5"></textarea>
+                        </div>
+                        <div class="row submit">
+                            <a href="#">Submit</a>
+                            <div class="send-icon">
+                                <ion-icon name="arrow-forward-sharp"></ion-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer (Starts Hidden, Animated In) -->
+        <footer>
+            <div class="footer-content">
+                <p class="copyright">© 2024 Cineverse. Stream Smarter.</p>
+                <nav class="footer-nav">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Help Center</a>
+                </nav>
+            </div>
+        </footer>
+
+        <!-- Scroll to Top Button -->
+        <a href="#" id="scrollToTopBtn" title="Go to top">
+            <ion-icon name="chevron-up-outline"></ion-icon>
+        </a>
+
+    </div> <!-- End #main-website-content -->
+
+    <!-- Scripts -->
+    <!-- Ensure these files exist and are correctly linked -->
+    <script type="module" src="projects.js"></script>
+    <script type="module" src="data.js"></script> <!-- Assumes hero_slider.js data is also included/exported here or in projects.js -->
+    <script type="module" src="menu.js"></script>
+
+</body>
+</html>
