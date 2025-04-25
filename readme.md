@@ -1,7 +1,7 @@
 # 🎬 CINEVERSE - Stream Smarter! 🍿
 
 <p align="center">
-  <img src="./cineverse-preview.png" alt="Cineverse Website Preview" width="90%">
+  <img src="https://github.com/AnonymousCoderArtist/Cineverse-Stream-Smarter/blob/main/Frame%20219.png" alt="Cineverse Website Preview" width="90%">
 </p>
 <p align="center">
   <em>Welcome to Cineverse, a concept web streaming platform showcasing a rich, animated, and interactive user experience.</em>
